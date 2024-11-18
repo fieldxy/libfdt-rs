@@ -401,12 +401,15 @@ int fdt_find_node(void *fdt, const char *path) {
   return fdt_path_offset(fdt, path);
 }
 
-char* fdt_get_property_string(void *fdt, const char *path, const char *prop, int *len) {
+void fdt_get_property_string(void *fdt, const char *path, const char *prop, int *len, char const **propp) {
   int node = fdt_path_offset(fdt, path);
   if (node < 0) {
     return NULL;
   }
-  // 获取这个property的值，并返回
-  const char *ret = fdt_getprop(fdt, node, prop, len);
-  return ret;
+  // 获取这个property的值
+  const char *path = fdt_getprop(fdt, node, prop, len);
+
+  /* return pointer to path (if available) */
+	if (propp)
+		*propp = path ? path : NULL;
 }
