@@ -78,6 +78,6 @@ int fdt_open_into(const void *fdt, void *buf, int bufsize);
  * @prop: property name
  * @len: length of the target string, assigned by the function
  */
-char* fdt_get_property_string(void *fdt, const char *path, const char *prop, int *len);
+void fdt_get_property_string(void *fdt, const char *path, const char *prop, int *len, char const **propp);
 
 int fdt_find_node(void *fdt, const char *path);
